@@ -4,14 +4,15 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.sql import func
 
-# Configuración de la base de datos con nombre DNS
+# Configuración de la base de datos
 DB_USER = "natalia"
 DB_PASS = "123"
-DB_HOST = "db.najoma.lans"  # Aquí va el nombre DNS
+DB_HOST = "192.168.215.16"
 DB_NAME = "proyecto_db"
 
 DATABASE_URL = f"mysql+pymysql://{DB_USER}:{DB_PASS}@{DB_HOST}/{DB_NAME}"
 
+# Configurar motor y sesión
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(bind=engine)
 Base = declarative_base()
@@ -23,10 +24,12 @@ class Acceso(Base):
     ip_cliente = Column(String(45), nullable=False)
     fecha = Column(TIMESTAMP, server_default=func.now())
 
+# Crear tabla si no existe
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
+# Dependencia para la sesión de BD
 def get_db():
     db = SessionLocal()
     try:
