@@ -5,9 +5,9 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.sql import func
 
 # Configuración de la base de datos
-DB_USER = "miusuario"
-DB_PASS = "miclave"
-DB_HOST = "10.10.5.6"
+DB_USER = "natalia"
+DB_PASS = "123"
+DB_HOST = "192.168.215.16"
 DB_NAME = "proyecto_db"
 
 DATABASE_URL = f"mysql+pymysql://{DB_USER}:{DB_PASS}@{DB_HOST}/{DB_NAME}"
